@@ -35,7 +35,7 @@ This tutorial outlines the prerequisites and installation of the open-source hel
 Part 1 (Create Virtual Machine in Azure)
 
 Create a Resource Group in Azure
-Create a Windows 10 Virtual Machine (VM) with 2-4 Virtual CPUs
+Create a Windows 11 Virtual Machine (VM) with 2-4 Virtual CPUs
 </p>
 <br />
 
