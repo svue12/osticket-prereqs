@@ -1,260 +1,290 @@
 <p align="center">
-<img src="https://i.imgur.com/Clzj7Xs.png" alt="osTicket logo"/>
+<img src="https://i.imgur.com/Clzj7Xs.png"/>
 </p>
 
-<h1>osTicket - Prerequisites and Installation</h1>
-This tutorial outlines the prerequisites and installation of the open-source help desk ticketing system osTicket.<br />
+<h1> How to Install osTicket </h1>
+This is an easy guide to installing a help desk ticketing system called osTicket.<br/>
 
 
-<h2>Video Demonstration</h2>
+<h2> Files You Need to Download</h2>
 
-- ### [YouTube: How To Install osTicket with Prerequisites](https://www.youtube.com)
+- ### [Download Now](https://drive.google.com/drive/u/2/folders/1APMfNyfNzcxZC6EzdaNfdZsUwxWYChf6) 📁
 
-<h2>Environments and Technologies Used</h2>
+<h2> Software & Technologies Used</h2>
 
-- Microsoft Azure (Virtual Machines/Compute)
-- Remote Desktop
+- Windows 10 (Build 19044)
+- Microsoft Azure (Virtual Machines)
+- Remote Desktop (RDP)
 - Internet Information Services (IIS)
 
-<h2>Operating Systems Used </h2>
+  <h2> Prerequisites </h2>
 
-- Windows 11</b> (25H2)
-
-<h2>List of Prerequisites</h2>
-
-- Web Server: Apache or IIS.
-- PHP Versions:
-- Rewrite Module 
-- osTicket Version 1.15+
--MySQL Database: 5.5+
-
-<h2>Installation Steps</h2>
-
-![image](https://github.com/JaMyraJones/osticket-prereqs/assets/145633544/d38a60b8-fe70-4442-b33a-e496286bfab4)
-
-Part 1 (Create Virtual Machine in Azure)
-
-Create a Resource Group in Azure
-Create a Windows 11 Virtual Machine (VM) with 2-4 Virtual CPUs
+- Create a Virtual Machine in Azure
+- Install osTicket v1.15.8
+- Install HeidiSQL
+- Install MySQL
+- Install PHP
+- install Microsoft Visual C++ Redistributable
+  <h2>Steps</h2>
+<h3 align="center">Create Virtual Machine in Azure</h3>
+<br />
+<p>
+<h3 align="center">First, start by creating a Resource Group inside Azure.</h3>
+<br />
+</p>
+<p>
+	<img src="https://i.imgur.com/eBi5k2l.png" height="75%" width="100%" />
+</p>
+<p>
+<h3 align="center">Now, create a Windows 11 Virtual Machine (VM), typically with 2-4 Virtual CPUs. For username and password, it can be anything as we'll be using this info to remote in with our main computer. When creating the Virtual Machine (VM), allow Azure to create a new Virtual Network (Vnet):</h3>
+<br />
+</p>
+<p>
+	<img src="https://i.imgur.com/dEF1c7h.png" height="75%" width="100%" />
 </p>
 <br />
-
-![image](https://github.com/JaMyraJones/osticket-prereqs/assets/145633544/b38e3495-dda1-4e37-bb0d-c76cf7f2057f)
-
-Part 2 (Installation)
-
-Install / Enable IIS in Windows with CGI and Common HTTP Features by accessing the "Control Panel" in Windows. Then click on "Programs" and "Turn on Windows features on or off" under "Programs and Features" afterwards.
-</p>
 <br />
-
-![image](https://github.com/JaMyraJones/osticket-prereqs/assets/145633544/6f5f094c-5e02-414e-8651-bf6935fb3bd1)
-
-Once the window pop-up, click on:
-
-Internet Information Services (drop tab) -> World Wide Web Services -> Application Development Features ->
-
-[X] CGI
-
-[X] Common HTTP Features
-</p>
+<h3 align="center">Open your Remote Desktop Connection app on your computer and connect to your Virtual Machine that was created in Azure. </h3>
 <br />
-
-![image](https://github.com/JaMyraJones/osticket-prereqs/assets/145633544/7d1e8f13-a257-49da-8905-efdd7c1a3358)
-
-Now, enable IIS Management Console by going to:
-
-Internet Information Services -> Web Management Tools ->
-
-[X] IIS Management Console
-</p>
-<br />
-
-![image](https://github.com/JaMyraJones/osticket-prereqs/assets/145633544/53874a8c-d09a-45f2-b61b-3024c67519cd)
-
-From the Installation Files, download and install PHP Manager for IIS (PHPManagerForIIS_V1.5.0.msi)
-
-From the Installation Files, download and install the Rewrite Module (rewrite_amd64_en-US.msi)
-
-Create the directory C:\PHP by creating an empty folder inside of Window's Directory (C:) within the "File Explorer" located at the bottom of the screen.
-
+<p>
+	<img src="https://github.com/Joeljjoseph1998/osticket-prereqs/assets/50834280/2e71fd86-4198-47aa-aa1a-d0aed1b8e0eb"/>
+	
 
 </p>
 <br />
-
-![image](https://github.com/JaMyraJones/osticket-prereqs/assets/145633544/50e8e64c-04ec-4795-8514-8e41332f0455)
-
-From the Installation Files, download PHP 7.3.8 (php-7.3.8-nts-Win32-VC15-x86.zip or the recommended version) and unzip the contents into C:\PHP
-
-From the Installation Files, download and install VC_redist.x86.exe.
-
-From the Installation Files, download and install MySQL 5.5.62 (mysql-5.5.62-win32.msi or recommended version). Within the installation, choose the following options when they appear:
-
-Typical Setup -> Launch Configuration Wizard (after install) -> Standard Configuration -> (create a password) (as shown below)
+<br />
+<h3 align="center">Now we need to install / Enable IIS in Windows. Go to your Search Bar > Type "Control Panel" > Click "Programs" > "Turn Windows features on or off" > Scroll down to "Internet Information Services (IIS).</h3>
+<br />
+<p>
+	<img src="https://i.imgur.com/iB0DDRd.png" height="75%" width="100%" />
 </p>
 <br />
-
-![image](https://github.com/JaMyraJones/osticket-prereqs/assets/145633544/b8111c2f-5a66-4538-ad20-47a6bf51b69b)
-
-Open IIS as an Admin by entering "ISS" in the search box of the home screen. Select "Run as administrator".
+<br />
+<h3 align="center">Once clicked, find the "Internet Information Services" expand it and then expand the "World Wide Web" tab. Afterward, expand the application Developer tab. Finally check the "CGI" button & press Ok. You will need CGI to download the PHP Manager. The PHP manager is a back-end web programming language that allows osTicket to run off a web browser.</h3>
+<br />
+<p>
+  <img src="https://github.com/Joeljjoseph1998/osticket-prereqs/assets/50834280/a6af9c35-e10c-4d7e-b2c8-30ffbe128f08" height="75%" width="100%"/>
 </p>
 <br />
-
-![image](https://github.com/JaMyraJones/osticket-prereqs/assets/145633544/04e064e1-270b-468f-adc8-90aa47a5771f)
-
-Select "PHP Manager" once ISS Manager appears and click on "Register new PHP version" to register PHP.
+<h3 align="center">Install PHP Manager</h3>
+<br />
+<p>
+<h3 align="center">Download the PHP manager file, and agree with all the terms. We've now downloaded the PHP manager into our operating system.</h3>
+<p>
+  <img src="https://i.imgur.com/pmwpPEu.png"height="75%" width="100%"/>
+</p>
+<br/>
+<h3 align="center">Install Rewrite Module</h3>
+<br />
+<p>
+<h3 align="center">Download the Rewrite Module file, agree with all the terms and it should now be installed onto the Computer.</h3>
+<p>
+  <img src="https://github.com/Joeljjoseph1998/osticket-prereqs/assets/50834280/28cf2dd0-d39e-45f8-a01b-61aec6657228"height="75%" width="100%"/>
+</p>
+<br/>
+<h3 align="center">CREATE DIRECTORY C:\PHP</h3>
+<br />
+<p>
+<h3 align="center"> Open File Explorer, type, "C:\" in the search bar, Right-click and create a new folder called, "PHP". Download php-7.3.8-nts-Win32-VC15-x86.zip from<a href="https://drive.google.com/drive/u/2/folders/1APMfNyfNzcxZC6EzdaNfdZsUwxWYChf6"> Files You Need to Download</a>, Extract it by going to where you download the file, Right-click the PHP 7.3.8 file and press extract to the PHP Folder you just created.
+</h3>
+<p>
+  <img src="https://github.com/Joeljjoseph1998/osticket-prereqs/assets/50834280/18746085-a3cf-4f1f-b0d5-5cd73f969319"height="75%" width="100%"/>
+</p>
+<br/>
+<h3 align="center">VC_REDIST DOWNLOAD</h3>
+<br/>
+<h3 align="center"> Download and install VC_Redist, Agree with any terms and agreements and finish installing.
+</h3>
+<p>
+  <img src="https://i.imgur.com/Gx8ryBV.png"75%" width="100%"/>
+</p>
+<br/>
+<h3 align="center">DOWNLOAD MySQL </h3>
+<h3 align="center"> Download and install MySQL, Agree with any terms and agreements up until you get to the password portion. Here you can create a username and password for the database that you'll be using to store the Ticket Information used in osTicket. 
+</h3>
+<p>
+  <img src="https://i.imgur.com/IVpLg40.png"75%" width="100%"/>
+<br/>
+  <img src="https://i.imgur.com/zdhWXNx.png" height="75%" width="100%" />
+</p>
+<br/>
+<h3 align="center">Install osTicket v1.15.8</h3>
+<br />
+<p>
+  Download osTicket (download from within lab files: link).
+</p>
+<p>
+	Extract and copy the “upload” folder INTO c:\inetpub\wwwroot:
+</p>
+	<img src="https://i.imgur.com/0MUJLMU.png" height="75%" width="100%" />
+	<img src="https://i.imgur.com/1h9goM8.png" height="75%" width="100%" />
+<p>
+	Within c:\inetpub\wwwroot, Rename “upload” to “osTicket”:
+</p>
+<p>
+	<img src="https://i.imgur.com/pDikkgq.png" height="75%" width="100%" />
 </p>
 <br />
-
-![image](https://github.com/JaMyraJones/osticket-prereqs/assets/145633544/c4ef8d36-cff7-4091-9313-937afa4bbf45)
-
-Upload the PHP (C:\PHP) folder that was created previously into entry box.
+<br />
+<h3 align="center">Reload IIS (Open IIS, Stop and Start the server)</h3>
+<br />
+<p>
+	Go to sites -> Default -> osTicket:
+</p>
+<p>
+	<img src="https://i.imgur.com/QeWNlG3.png" height="75%" width="100%" />
+</p>
+<p>
+	On the right, click “Browse *:80”:
+</p>
+<p>
+	<img src="https://i.imgur.com/3iXhNbi.png" height="75%" width="100%"/>
 </p>
 <br />
-
-![image](https://github.com/JaMyraJones/osticket-prereqs/assets/145633544/e5c16d65-1058-4715-90e0-c7e357a93c3d)
-
-Open IIS, Stop, and Start the server
+<br />
+<h3 align="center">Enable Extensions in IIS: Note that some extensions are not enabled</h3>
+<br />
+<p>
+	Go back to IIS, sites -> Default -> osTicket.
+</p>
+<p>
+	Double-click PHP Manager:
+</p>
+<p>
+	<img src="https://i.imgur.com/LFKo5Hs.png" height="75%" width="100%" />
+</p>
+<p>
+	Click “Enable or disable an extension”.
+</p>
+<p>
+	Enable: php_imap.dll.
+</p>
+<p>
+	Enable: php_intl.dll.
+</p>
+<p>
+	Enable: php_opcache.dll:
+</p>
+<p>
+	<img src="https://imgur.com/a/nrQo0kz" height="75%" width="100%"/>
 </p>
 <br />
-
-![image](https://github.com/JaMyraJones/osticket-prereqs/assets/145633544/edf9fd1c-f5a1-4e17-9ae8-bc369a7ae98b)
-
-Part 3 (Install osTicket v1.15.8 or the recommended veerion)
-
-Download osTicket from the Installation Files Folder
-Extract and copy “upload” folder to c:\inetpub\wwwroot
-Within c:\inetpub\wwwroot, Rename “upload” to “osTicket”
+<br />
+<h3 align="center">Refresh the osTicket site in your browser, observe the changes</h3>
+<br />
+<p>
+	<img src="https://i.imgur.com/6iSNd4H.png" height="75%" width="100%" />
 </p>
 <br />
-
-![image](https://github.com/JaMyraJones/osticket-prereqs/assets/145633544/a63b7ff2-4469-4a34-9c93-0bddbfa3d6e0)
-
-Open IIS, Stop, and Start the server
-
-Under "Connections" on left side of the screen,
-
-Go to sites -> Default -> osTicket -> On the right, click “Browse *:80(http)”
+<br />
+<h3 align="center">Rename</h3>
+<br />
+<p>
+	From: C:\inetpub\wwwroot\osTicket\include\ost-sampleconfig.php.
+</p>
+<p>
+	To: C:\inetpub\wwwroot\osTicket\include\ost-config.php:
+</p>
+<p>
+	<img src="https://i.imgur.com/TEw71SD.png" height="75%" width="100%" />
 </p>
 <br />
-
-![image](https://github.com/JaMyraJones/osticket-prereqs/assets/145633544/b5bdb130-3b2d-4790-b643-6d5f5e80149d)
-
-Some extensions will not be enabled, so:
-
-Go back to IIS, sites -> Default -> osTicket, Double-click "PHP Manager"
-
-Click “Enable or disable an extension”
+<br />
+<h3 align="center">Assign Permissions: ost-config.php</h3>
+<br />
+<p>
+	Disable inheritance -> Remove All:
+</p>
+<p>
+	<img src="https://i.imgur.com/1QtRWEF.png" height="75%" width="100%" />
+</p>
+<p>
+	New Permissions -> Everyone -> All:
+</p>
+<p>
+	<img src="https://i.imgur.com/YzsMXNX.png" height="75%" width="100%" />
+</p>
+<p>
+	<img src="https://i.imgur.com/k7x9yGR.png" height="75%" width="100%" />
 </p>
 <br />
-
-![image](https://github.com/JaMyraJones/osticket-prereqs/assets/145633544/0de10d8b-df87-464d-9cfe-a2c8539c5d88)
-
-Select the following extensions and click "Add" under "Actions" on the right side of the screen.
-
-Enable: php_imap.dll
-
-Enable: php_intl.dll
-
-Enable: php_opcache.dll
+<br />
+<h3 align="center">Continue Setting up osTicket in the browser (click Continue)</h3>
+<br />
+<p>
+	Name Helpdesk.
+</p>
+<p>
+	Default email (receives email from customers):
+</p>
+<p>
+	<img src="https://i.imgur.com/rvMvlNC.png" height="75%" width="100%" />
+	<img src="https://i.imgur.com/YszhIpl.png" height="75%" width="100%" />
 </p>
 <br />
-
-![image](https://github.com/JaMyraJones/osticket-prereqs/assets/145633544/5ebbbf02-02eb-4e3e-b4e1-7328918a1156)
-
-Go to osTicket site in your browse.
+<br />
+<h3 align="center">Download and Install HeidiSQL</h3>
+<br />
+<p>
+	<img src="https://i.imgur.com/AEg0b2P.png" height="75%" width="100%" />
+</p>
+<p>
+	Create a new session, root/Password1.
+</p>
+<p>
+	Connect to the session:
+</p>
+<p>
+	<img src="https://i.imgur.com/9t51ApR.png" height="75%" width="100%" "/>
+</p>
+<p>
+	Create a database called “osTicket”:
+</p>
+<p>
+	<img src="https://i.imgur.com/vXzmQqg.png" height="75%" width="100%" />
 </p>
 <br />
-
-![image](https://github.com/JaMyraJones/osticket-prereqs/assets/145633544/ec467017-f979-4de4-9182-d018d910520c)
-
-Return to "File Explorer" to rename: ost-config.php
-
-From: C:\inetpub\wwwroot\osTicket\include\ost-sampleconfig.php
-
-To: C:\inetpub\wwwroot\osTicket\include\ost-config.php
-
-Part 4 (Assign Permissions: ost-config.php)
-
-To change permissions, first disable inheritance:
-
-right click "ost-config" (in File Explore) -> select "Properties" -> "Security" tab at the top -> select the "Advanced" -> "Disable inheritance" -> "Remove All"
-
-
+<br />
+<h3 align="center">Continue Setting up osTicket in the browser</h3>
+<br />
+<p>MySQL Database: osTicket</p>
+<p>
+	MySQL Username: root
+</p>
+<p>
+	MySQL Password: Password1:
+</p>
+<p>
+	<img src="https://i.imgur.com/akDyber.png" height="75%" width="100%" />
+</p>
+<p>Click “Install Now!”</p>
+<p>Congratulations, hopefully it is installed with no errors!</hp>
+<p>
+	<img src="https://i.imgur.com/J5omRoE.png" height="75%" width="100%" />
 </p>
 <br />
-
-
-![image](https://github.com/JaMyraJones/osticket-prereqs/assets/145633544/90320b03-d989-4e32-848e-e026aadce221)![image](https://github.com/JaMyraJones/osticket-prereqs/assets/145633544/4a9cc53d-e3cb-474f-ab69-702cf33cbb60)
-![image](https://github.com/JaMyraJones/osticket-prereqs/assets/145633544/fd401115-af38-43f5-ac7d-2a044311f136)
-
-
-Now apply new permissions:
-
-"Select a principal" -> Under "Enter the object name to select" type "Everyone" -> select "Check Names" -> click "OK" -> seclect "Full Control" under "Basic Permissions" -> "Apply" -> "OK"
-
-
+<br />
+<h3 align="center">Clean up</h3>
+<br />
+<p>
+	Delete: C:\inetpub\wwwroot\osTicket\setup:
+</p>
+<p>
+	<img src="https://i.imgur.com/eg0ZPG3.png" height="75%" width="100%" />
+</p>
+<p>
+	Set Permissions to “Read” only: C:\inetpub\wwwroot\osTicket\include\ost-config.php:
+</p>
+<p>
+	<img src="https://i.imgur.com/n6k46XL.png" height="75%" width="100%" />
 </p>
 <br />
-
-![image](https://github.com/JaMyraJones/osticket-prereqs/assets/145633544/afd210cc-d927-45ac-9e5c-f0135d79c739)
-
-From the Installation Files, download and install HeidiSQL.
-Open Heidi SQL
-
+<br />
+<h3 align="center">Login to the osTicket Admin Panel (http://localhost/osTicket/scp/login.php)</h3>
+<br />
+<p>
+	<img src="https://i.imgur.com/8wvWH0H.jpg" height="75%" width="100%" />
 </p>
 <br />
-
-![image](https://github.com/JaMyraJones/osticket-prereqs/assets/145633544/24c2c573-3a18-4a64-819b-a4ab30c2ff13)
-
-Create a new session, username, and Password1. For an example, user: root, password: Password1. This information will be entered in osTicket's browser setup.
-</p>
 <br />
-
-![image](https://github.com/JaMyraJones/osticket-prereqs/assets/145633544/2258a370-40c7-49cd-bdc0-2ea3a3301c57)![image](https://github.com/JaMyraJones/osticket-prereqs/assets/145633544/3f750aa6-935e-4057-a41b-60c8855dae5c)
-
-
-Connect to the session.
-Create a database called “osTicket”
-</p>
-<br />
-
-![image](https://github.com/JaMyraJones/osticket-prereqs/assets/145633544/23c25411-9470-41c5-b9c0-1cd1cc06d3a9)
-
-Continue Setting up osticket in the browser with information created in Heidi SQL.
-MySQL Database: osTicket MySQL Username: root MySQL Password: Password1
-
-After completing the osTicket's setup on the browser, click “Install Now!”
-</p>
-<br />
-
-![image](https://github.com/JaMyraJones/osticket-prereqs/assets/145633544/9800fe39-a2a7-4e78-bab0-da06528f866a)
-
-Part 5 (Clean up)
-
-Return to "File Explorer" and follow the this directory to delete the following:
-Delete: C:\inetpub\wwwroot\osTicket\setup
-</p>
-<br />
-
-![image](https://github.com/JaMyraJones/osticket-prereqs/assets/145633544/c46de405-9cfb-4f1d-a84c-7d157f72d48f)
-
-Set Permissions to “Read” only by returning to ost-config.php at:
-C:\inetpub\wwwroot\osTicket\include\ost-config.php
-
-Next, apply the following settings:
-right click "ost-config" (in File Explore) -> select "Properties" -> "Security" tab at the top -> select the "Everyone"
-</p>
-<br />
-
-![image](https://github.com/JaMyraJones/osticket-prereqs/assets/145633544/89879ab9-a137-4aad-9e7b-a654ac824547)![image](https://github.com/JaMyraJones/osticket-prereqs/assets/145633544/afbb302b-cf82-462a-84ec-e45ccb23fee9)
-
-
-"Edit" -> remove all checks except for "Read" and "Read & execute -> "OK" -> "Apply" ->"OK
-</p>
-<br />
-
-![image](https://github.com/JaMyraJones/osticket-prereqs/assets/145633544/676bec80-349c-45eb-a396-2003c3af9bdf)
-
-Browse to your help desk login page: http://localhost/osTicket/scp/login.php
-</p>
-<br />
+<h3 align="center"> Congrats, You've Finished Installing osTicket.</h3>
